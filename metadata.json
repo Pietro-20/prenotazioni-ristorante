@@ -1,0 +1,5 @@
+{
+  "name": "Prenotazioni Ristorante",
+  "description": "Un'applicazione web per la gestione delle prenotazioni dei ristoranti, che offre un'interfaccia elegante per i clienti per prenotare un tavolo e un pannello di amministrazione per il personale per visualizzare, modificare ed eliminare le prenotazioni.",
+  "requestFramePermissions": []
+}
