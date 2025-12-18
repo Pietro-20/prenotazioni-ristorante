@@ -2,114 +2,11 @@
 <html lang="it">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ristorante Oro Nero - Experience</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Lato', 'sans-serif'],
-              serif: ['Playfair Display', 'serif'],
-            },
-            colors: {
-              gold: {
-                400: '#FBBF24',
-                500: '#D97706',
-                600: '#B45309',
-              },
-              dark: {
-                900: '#0a0a0a',
-                800: '#121212',
-                700: '#1E1E1E',
-              }
-            },
-            backgroundImage: {
-              'noise': "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%220.05%22/%3E%3C/svg%3E')",
-            }
-          },
-        },
-      }
-    </script>
-    <style>
-      body {
-        background-color: #050505;
-        color: #e5e5e5;
-      }
-      .bg-noise {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: -1;
-        opacity: 0.4;
-      }
-      @keyframes fade-in-up {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      .animate-fade-in-up {
-        animation: fade-in-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      }
-      
-      /* Luxury Inputs */
-      input, select, textarea {
-        transition: all 0.3s ease;
-      }
-      input:focus, select:focus, textarea:focus {
-        box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.5);
-      }
-
-      /* Hide number input arrows */
-      input[type=number]::-webkit-inner-spin-button, 
-      input[type=number]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-      }
-      input[type=number] {
-        -moz-appearance: textfield;
-      }
-    </style>
-    <script type="importmap">
-{
-  "imports": {
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
-</head>
+    <title>Prenotazioni Ristorante</title>
+  </head>
   <body>
-    <div class="bg-noise bg-repeat"></div>
     <div id="root"></div>
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/service-worker.js')
-            .then(registration => {
-              console.log('ServiceWorker registration successful');
-            })
-            .catch(error => {
-              console.log('ServiceWorker registration failed: ', error);
-            });
-        });
-      }
-    </script>
-    <script type="module" src="/index.tsx"></script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
