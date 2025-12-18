@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Header from './components/Header';
-import UserPage from './components/UserPage';
+import UserPage from './components/UserPage.tsx';
 import AdminPage from './components/AdminPage';
 import PasswordModal from './components/PasswordModal';
 import { useReservations } from './hooks/useReservations';
