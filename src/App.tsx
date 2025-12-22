@@ -5,17 +5,20 @@ import UserPage from "./components/UserPage";
 import AdminPage from "./components/AdminPage";
 import PasswordModal from "./components/PasswordModal";
 
-import { useReservations } from "./hooks/useReservations";
+// ✅ usa il tuo nome file reale
+import { useReservations } from "./hooks/userReservations";
 
 type View = "user" | "admin";
 
-const ADMIN_PASSWORD = "admin";
+const ADMIN_PASSWORD = "admin"; // cambia dopo
 
-export default function App() {
+const App: React.FC = () => {
   const [view, setView] = useState<View>("user");
+
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
   const [passwordError, setPasswordError] = useState<string | null>(null);
 
+  // hook
   const {
     reservations,
     addReservation,
@@ -23,50 +26,48 @@ export default function App() {
     deleteReservation,
   } = useReservations();
 
-  const handleAdminAccess = () => {
-    setIsPasswordModalOpen(true);
+  const handleAdminClick = () => {
     setPasswordError(null);
+    setIsPasswordModalOpen(true);
   };
 
   const handlePasswordSubmit = (password: string) => {
     if (password === ADMIN_PASSWORD) {
-      setView("admin");
       setIsPasswordModalOpen(false);
       setPasswordError(null);
-      return;
+      setView("admin");
+    } else {
+      setPasswordError("Password errata");
     }
-    setPasswordError("Password errata");
-  };
-
-  const handleClosePasswordModal = () => {
-    setIsPasswordModalOpen(false);
-    setPasswordError(null);
   };
 
   return (
-    <div>
-      <Header
-        onUserClick={() => setView("user")}
-        onAdminClick={handleAdminAccess}
-      />
+    <>
+      <Header currentView={view} setView={setView} onAdminClick={handleAdminClick} />
 
       {view === "user" ? (
-        <UserPage onSubmit={addReservation} />
+        <UserPage
+          reservations={reservations}
+          addReservation={addReservation}
+        />
       ) : (
         <AdminPage
           reservations={reservations}
-          onUpdate={updateReservation}
-          onDelete={deleteReservation}
+          updateReservation={updateReservation}
+          deleteReservation={deleteReservation}
         />
       )}
 
-      {isPasswordModalOpen && (
-        <PasswordModal
-          error={passwordError}
-          onSubmit={handlePasswordSubmit}
-          onClose={handleClosePasswordModal}
-        />
-      )}
-    </div>
+      <PasswordModal
+        isOpen={isPasswordModalOpen}
+        onClose={() => setIsPasswordModalOpen(false)}
+        onSubmit={handlePasswordSubmit}
+        error={passwordError}
+      />
+    </>
   );
-}
+};
+
+export default App;
+
+  
