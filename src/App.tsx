@@ -5,7 +5,7 @@ import UserPage from "./components/UserPage";
 import AdminPage from "./components/AdminPage";
 import PasswordModal from "./components/PasswordModal";
 
-// ✅ usa il tuo nome file reale
+// Assicurati che il file reale sia src/hooks/userReservations.ts (PascalCase o camelCase deve coincidere)
 import { useReservations } from "./hooks/userReservations";
 
 type View = "user" | "admin";
@@ -69,5 +69,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-
-  
