@@ -4,6 +4,8 @@ import { CalendarCheckIcon } from './icons/CalendarCheckIcon';
 
 interface UserPageProps {
   onAddReservation: (reservation: Omit<Reservation, 'id' | 'status'>) => string;
+  // Aggiunto opzionale per evitare errori se non passato esplicitamente, anche se App.tsx lo passa
+  reservations?: Reservation[];
 }
 
 const WEBHOOK_URL: string = '';
