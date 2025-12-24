@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-import Header from "./components/Header";
-import UserPage from "./components/UserPage";
-import AdminPage from "./components/AdminPage";
-import PasswordModal from "./components/PasswordModal";
+import { Header } from "./components/Header";
+import { UserPage } from "./components/UserPage";
+import { AdminPage } from "./components/AdminPage";
+import { PasswordModal } from "./components/PasswordModal";
 
 // Assicurati che il file reale sia src/hooks/userReservations.ts (PascalCase o camelCase deve coincidere)
 import { useReservations } from "./hooks/userReservations";
@@ -13,59 +13,59 @@ type View = "user" | "admin";
 const ADMIN_PASSWORD = "admin"; // cambia dopo
 
 const App: React.FC = () => {
-  const [view, setView] = useState<View>("user");
+    const [view, setView] = useState<View>("user");
 
-  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
-  const [passwordError, setPasswordError] = useState<string | null>(null);
+    const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
+    const [passwordError, setPasswordError] = useState<string | null>(null);
 
-  // hook
-  const {
-    reservations,
-    addReservation,
-    updateReservation,
-    deleteReservation,
-  } = useReservations();
+    // hook
+    const {
+        reservations,
+        addReservation,
+        updateReservation,
+        deleteReservation,
+    } = useReservations();
 
-  const handleAdminClick = () => {
-    setPasswordError(null);
-    setIsPasswordModalOpen(true);
-  };
+    const handleAdminClick = () => {
+        setPasswordError(null);
+        setIsPasswordModalOpen(true);
+    };
 
-  const handlePasswordSubmit = (password: string) => {
-    if (password === ADMIN_PASSWORD) {
-      setIsPasswordModalOpen(false);
-      setPasswordError(null);
-      setView("admin");
-    } else {
-      setPasswordError("Password errata");
-    }
-  };
+    const handlePasswordSubmit = (password: string) => {
+        if (password === ADMIN_PASSWORD) {
+            setIsPasswordModalOpen(false);
+            setPasswordError(null);
+            setView("admin");
+        } else {
+            setPasswordError("Password errata");
+        }
+    };
 
-  return (
-    <>
-      <Header currentView={view} setView={setView} onAdminClick={handleAdminClick} />
+    return (
+        <>
+            <Header currentView={view} setView={setView} onAdminClick={handleAdminClick} />
 
-      {view === "user" ? (
-        <UserPage
-          reservations={reservations}
-          addReservation={addReservation}
-        />
-      ) : (
-        <AdminPage
-          reservations={reservations}
-          updateReservation={updateReservation}
-          deleteReservation={deleteReservation}
-        />
-      )}
+            {view === "user" ? (
+                <UserPage
+                    reservations={reservations}
+                    addReservation={addReservation}
+                />
+            ) : (
+                <AdminPage
+                    reservations={reservations}
+                    onUpdateReservation={updateReservation}
+                    onDeleteReservation={deleteReservation}
+                />
+            )}
 
-      <PasswordModal
-        isOpen={isPasswordModalOpen}
-        onClose={() => setIsPasswordModalOpen(false)}
-        onSubmit={handlePasswordSubmit}
-        error={passwordError}
-      />
-    </>
-  );
+            <PasswordModal
+                isOpen={isPasswordModalOpen}
+                onClose={() => setIsPasswordModalOpen(false)}
+                onSubmit={handlePasswordSubmit}
+                error={passwordError}
+            />
+        </>
+    );
 };
 
 export default App;
