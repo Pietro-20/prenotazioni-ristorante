@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Reservation, ReservationStatus } from '../types';
+import { Reservation, ReservationStatus } from '../types.ts';
 
 const STORAGE_KEY = 'restaurant_reservations_v3';
 
