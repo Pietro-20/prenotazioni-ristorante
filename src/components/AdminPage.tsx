@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Reservation, ReservationStatus, Occasion, AreaPreference } from '../types.ts';
+import { Reservation, ReservationStatus, Occasion, AreaPreference } from '../types';
 import { EditIcon } from './icons/EditIcon';
 import { DeleteIcon } from './icons/DeleteIcon';
 import { SaveIcon } from './icons/SaveIcon';
@@ -24,7 +24,7 @@ const StatCard = ({ title, value, icon, trend }: any) => (
     </div>
 );
 
-const AdminPage: React.FC<AdminPageProps> = ({ reservations, onUpdateReservation, onDeleteReservation }) => {
+export const AdminPage: React.FC<AdminPageProps> = ({ reservations, onUpdateReservation, onDeleteReservation }) => {
     const [viewMode, setViewMode] = useState<'list' | 'floor'>('list');
     const [editingId, setEditingId] = useState<string | null>(null);
     const [currentReservation, setCurrentReservation] = useState<Reservation | null>(null);
@@ -265,7 +265,7 @@ const AdminPage: React.FC<AdminPageProps> = ({ reservations, onUpdateReservation
                                                 </td>
                                                 <td className="px-6 py-4">
                                                     <span className={`text-xs font-bold uppercase tracking-wider ${res.area === 'Privé Esclusivo' ? 'text-purple-400' :
-                                                            res.area === 'Terrazza Panoramica' ? 'text-gold-400' : 'text-gray-400'
+                                                        res.area === 'Terrazza Panoramica' ? 'text-gold-400' : 'text-gray-400'
                                                         }`}>
                                                         {res.area}
                                                     </span>
@@ -304,7 +304,7 @@ const AdminPage: React.FC<AdminPageProps> = ({ reservations, onUpdateReservation
                         (areaFilter === 'Tutti' || areaFilter === area) && (
                             <div key={area} className="bg-dark-800/80 border border-white/10 rounded-2xl p-6">
                                 <h3 className={`text-xl border-b border-white/5 pb-4 mb-4 flex justify-between items-center font-serif ${area === 'Privé Esclusivo' ? 'text-purple-400' :
-                                        area === 'Terrazza Panoramica' ? 'text-gold-400' : 'text-gray-200'
+                                    area === 'Terrazza Panoramica' ? 'text-gold-400' : 'text-gray-200'
                                     }`}>
                                     {area}
                                     <span className="text-xs font-sans text-gray-500 uppercase tracking-wide">Zona</span>
@@ -312,7 +312,7 @@ const AdminPage: React.FC<AdminPageProps> = ({ reservations, onUpdateReservation
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {filteredReservations.filter(r => r.area === area).map(res => (
                                         <div key={res.id} className={`p-4 rounded-xl border transition-all ${editingId === res.id ? 'bg-dark-900 border-gold-500 ring-1 ring-gold-500' :
-                                                res.status === ReservationStatus.Seated ? 'bg-green-900/20 border-green-500/50' : 'bg-dark-900 border-gray-700 hover:border-gold-500/50'
+                                            res.status === ReservationStatus.Seated ? 'bg-green-900/20 border-green-500/50' : 'bg-dark-900 border-gray-700 hover:border-gold-500/50'
                                             }`}>
                                             {editingId === res.id && currentReservation ? (
                                                 // Edit Mode CARD
@@ -396,5 +396,3 @@ const AdminPage: React.FC<AdminPageProps> = ({ reservations, onUpdateReservation
         </div>
     );
 };
-
-export default AdminPage;
