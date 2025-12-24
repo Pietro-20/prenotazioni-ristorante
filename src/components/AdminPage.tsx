@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Reservation, ReservationStatus, Occasion, AreaPreference } from '../types';
+import { Reservation, ReservationStatus, Occasion, AreaPreference } from '../types.ts';
 import { EditIcon } from './icons/EditIcon';
 import { DeleteIcon } from './icons/DeleteIcon';
 import { SaveIcon } from './icons/SaveIcon';
